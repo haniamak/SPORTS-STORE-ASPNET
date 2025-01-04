@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using System.Linq;
 using WebApplication2.Data;
 using WebApplication2.Models;
 
@@ -16,7 +17,6 @@ namespace WebApplication2.Controllers
             return View();
         }
 
-        [Route("shop/{category?}")]
         public IActionResult List(string category = "all")
         {
             List<Product> products = new List<Product>();
@@ -35,6 +35,20 @@ namespace WebApplication2.Controllers
         {
             var product = _context.Products.Find(id);
             return View(product);
+        }
+
+        [HttpPost]
+        public IActionResult Search(SearchModel searchModel)
+        {
+            var productQuery = searchModel.ProductQuery?.ToLower();
+
+            var products = _context.Products
+                .Where(p =>
+                    (p.Name != null && p.Name.ToLower().Contains(productQuery)) ||
+                    (p.Description != null && p.Description.ToLower().Contains(productQuery)))
+                .ToList();
+
+            return View("List", products);
         }
     }
 }
