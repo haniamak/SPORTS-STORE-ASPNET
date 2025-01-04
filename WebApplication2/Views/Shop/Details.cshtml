@@ -1,10 +1,23 @@
 ﻿@model WebApplication2.Models.Product
 
 @{
-	ViewBag.Title = "Product Details";
+    ViewBag.Title = "Product Details";
 }
+<div style="text-align: center;">
 
-<h2>Product Details</h2>
+<div class="card mx-auto" style="width: 30rem;">
+    <img src="/images/@Model.ImageFileName" class="card-img-top img-fluid" alt="Product Image" />
+    <div class="card-body">
+        <h5 class="card-title">@Model.Name</h5>
+        <p class="card-text"><strong>Category:</strong> @Model.Category</p>
+        <p class="card-text"><strong>Description:</strong> @Model.Description</p>
+        <p class="card-text"><strong>Price:</strong> @Model.Price</p>
 
+        <form asp-controller="Cart" asp-action="Add" method="post">
+            <input type="hidden" name="productId" value="@Model.ProductId" />
+            <button type="submit" class="btn btn-success">Add to Cart</button>
+        </form>
 
-		
+    </div>
+</div>
+</div>
