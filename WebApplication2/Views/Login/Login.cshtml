@@ -1,0 +1,33 @@
+﻿@model LoginModel
+@{
+    ViewData["Title"] = "Login";
+}
+<h1>Log in!</h1>
+<form asp-action="Login" method="post">
+    @if (!ViewData.ModelState.IsValid)
+    {
+        <div class="alert alert-danger">
+            @foreach (var error in ViewData.ModelState.Values.SelectMany(v => v.Errors))
+            {
+                <p>@error.ErrorMessage</p>
+            }
+        </div>
+    }
+    <div class="form-group">
+        <label for="Email">Email: </label>
+        <input type="text" name="Email" required />
+        <span asp-validation-for="Email" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label for="Password">Password: </label>
+        <input type="password" name="Password" required />
+        <span asp-validation-for="Password" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <button type="submit">Login</button>
+    </div>
+</form>
+
+<form asp-action="LoginWithGoogle" method="post">
+    <button>Zaloguj z Google</button>
+</form>

@@ -1,0 +1,53 @@
+.form-container {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    width: 50px;
+    margin-left: 20px;
+    margin-top: 50px;
+}
+
+.form-group {
+    margin-bottom: 15px;
+    display: flex;
+    flex-direction: column;
+}
+
+.alert-danger {
+    color: #721c24; /* Czerwony kolor tekstu */
+    background-color: #f8d7da; /* Jasnoczerwone t³o */
+    border: 1px solid #f5c6cb; /* Czerwona ramka */
+    border-radius: 5px; /* Zaokr¹glenie rogów */
+    padding: 15px; /* Odstêpy wewnêtrzne */
+    margin-bottom: 15px; /* Odstêp od nastêpnych elementów */
+    width: 300px;
+}
+
+label {
+    margin-bottom: 5px;
+}
+
+input {
+    padding: 8px;
+    width: 50%;
+    box-sizing: border-box;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+button {
+    width: 50%;
+    padding: 10px 20px;
+    background-color: white;
+    color: black;
+    border: 1px solid;
+    border-radius: 4px;
+    cursor: pointer;
+    text-align: center;
+    border-color: #a9a9a9;
+}
+
+button:hover {
+    background-color: #d3d3d3;
+    color: black;
+}
