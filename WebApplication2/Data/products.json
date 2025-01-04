@@ -1,0 +1,34 @@
+﻿[
+    {
+        "Id": 1,
+        "Name": "Running Shoes",
+        "Description": "Carbon sole shoes",
+        "Price": 400,
+        "Category": "Boots",
+        "ImageFileName": "runningshoes.jpg"
+    },
+    {
+        "Id": 2,
+        "Name": "Football ball",
+        "Price": 29,
+        "Description": "White color",
+        "Category": "Sports equipment",
+        "ImageFileName": "footballball.jpg"
+    },
+    {
+        "Id": 3,
+        "Name": "Shorts",
+        "Price": 19,
+        "Description": "Waterproof",
+        "Category": "Clothes",
+        "ImageFileName": "shorts.jpg"
+    },
+    {
+        "Id": 4,
+        "Name": "Pool flip flops",
+        "Description": "Anti-slip",
+        "Price": 40,
+        "Category": "Boots",
+        "ImageFileName": "flipflops.jpg"
+    }
+]
