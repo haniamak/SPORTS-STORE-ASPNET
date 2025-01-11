@@ -22,7 +22,6 @@
   <ItemGroup>
     <Folder Include="Data\images\" />
     <Folder Include="Migrations\" />
-    <Folder Include="Views\Cart\" />
   </ItemGroup>
 
 </Project>

@@ -8,7 +8,8 @@ using System.Text.Json;
 using Microsoft.Extensions.FileProviders;
 
 var builder = WebApplication.CreateBuilder(args);
-
+builder.Services.AddMemoryCache();
+builder.Services.AddSession();
 // Add services to the container.
 builder.Services.AddControllersWithViews();
 
@@ -21,7 +22,7 @@ builder.Services.AddScoped(typeof(IDapperRepository<>), typeof(DapperRepository<
 builder.Services.AddAuthentication(options =>
 {
     options.DefaultScheme = CookieAuthenticationDefaults.AuthenticationScheme;
-	options.DefaultChallengeScheme = GoogleDefaults.AuthenticationScheme;
+    options.DefaultChallengeScheme = GoogleDefaults.AuthenticationScheme;
 })
 .AddCookie("Cookies", options =>
 {
@@ -32,10 +33,10 @@ builder.Services.AddAuthentication(options =>
 })
 .AddGoogle(options =>
  {
-	 IConfigurationSection googleAuthNSection = builder.Configuration.GetSection("Authentication:Google");
+     IConfigurationSection googleAuthNSection = builder.Configuration.GetSection("Authentication:Google");
 
-	 options.ClientId = googleAuthNSection["ClientId"];
-	 options.ClientSecret = googleAuthNSection["ClientSecret"];
+     options.ClientId = googleAuthNSection["ClientId"];
+     options.ClientSecret = googleAuthNSection["ClientSecret"];
      options.SignInScheme = CookieAuthenticationDefaults.AuthenticationScheme;
      options.CallbackPath = "/signin-google";
      options.CorrelationCookie.SameSite = SameSiteMode.Strict;
@@ -47,6 +48,7 @@ builder.Services.AddAuthentication(options =>
 
 var app = builder.Build();
 
+app.UseSession();
 
 // Configure the HTTP request pipeline.
 if (!app.Environment.IsDevelopment())
