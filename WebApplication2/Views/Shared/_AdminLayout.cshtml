@@ -1,0 +1,48 @@
+﻿@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewData["Title"] = "Admin";
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - Admin Panel</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+</head>
+<body>
+    <div class="container-fluid">
+        <div class="row">
+
+            <div class="col-md-2">
+                <h4>Category</h4>
+                <ul class="list-group">
+                    <li class="list-group-item">
+                        <a asp-controller="Admin" asp-action="ListofProducts" class="nav-link">List of Products</a>
+                    </li>
+                    <li class="list-group-item">
+                        <a asp-controller="Admin" asp-action="ListofUsers" class="nav-link">List of Users</a>
+                    </li>
+                    <li class="list-group-item">
+                        <a asp-controller="Admin" asp-action="Orders" class="nav-link">Orders</a>
+                    </li>
+                </ul>
+
+                
+            </div>
+
+            <div class="col-md-10">
+                <main role="main" class="pb-3">
+                    @RenderBody()
+                </main>
+            </div>
+        </div>
+    </div>
+
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+</body>
+</html>

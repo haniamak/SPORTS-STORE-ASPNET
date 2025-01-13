@@ -4,6 +4,6 @@
     {
         public List<CartItemModel> CartItems { get; set; } = new List<CartItemModel>();
         public decimal TotalPrice;
-        public int TotalQuantity;
+
 	}
 }

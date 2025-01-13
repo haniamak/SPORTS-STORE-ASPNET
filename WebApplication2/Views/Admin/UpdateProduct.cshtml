@@ -1,0 +1,42 @@
+﻿@model WebApplication2.Models.Product
+
+@{
+    ViewBag.Title = "Update Product";
+}
+
+<div style="text-align: center;">
+    <h2>Update Product</h2>
+
+    <div class="card mx-auto" style="width: 30rem;">
+        <form asp-controller="Admin" asp-action="SaveUpdate" method="post" enctype="multipart/form-data">
+            <input type="hidden" name="ProductId" value="@Model.ProductId" />
+            <img src="/images/@Model.ImageFileName" class="card-img-top img-fluid" alt="Product Image" />
+
+            <div class="card-body">
+                <div class="mb-3">
+                    <label for="name" class="form-label"><strong>Name</strong></label>
+                    <input type="text" id="name" name="Name" value="@Model.Name" class="form-control" required />
+                </div>
+
+                <div class="mb-3">
+                    <label for="category" class="form-label"><strong>Category</strong></label>
+                    <input type="text" id="category" name="Category" value="@Model.Category" class="form-control" required />
+                </div>
+
+                <div class="mb-3">
+                    <label for="description" class="form-label"><strong>Description</strong></label>
+                    <textarea id="description" name="Description" class="form-control" required>@Model.Description</textarea>
+                </div>
+
+                <div class="mb-3">
+                    <label for="price" class="form-label"><strong>Price</strong></label>
+                    <input type="number" min="0" step="0.01" id="price" name="Price" value="@Model.Price" class="form-control" required />
+                </div>
+
+                <button type="submit" class="btn btn-success">Save Changes</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+

@@ -17,7 +17,6 @@ namespace WebApplication2.Models
         [Required(ErrorMessage = "Please enter product category")]
         public string? Category { get; set; }
 
-        [Required(ErrorMessage = "Please enter product file name")]
         public string? ImageFileName { get; set; }
 
 
