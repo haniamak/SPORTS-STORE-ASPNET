@@ -9,10 +9,12 @@ namespace WebApplication2.Controllers
 	public class AdminController : Controller
 	{
         private readonly ShopContext _context;
+        private readonly IDapperRepository<USER> _userRepository;
 
-        public AdminController(ShopContext context)
+        public AdminController(ShopContext context, IDapperRepository<USER> userRepository)
         {
             _context = context;
+            _userRepository = userRepository;
         }
         public IActionResult Index()
 		{
@@ -30,9 +32,18 @@ namespace WebApplication2.Controllers
 
         public IActionResult ListofUsers()
 		{
-            //TODO: Implement this method
-            return View();
-        }
+            List<USER> users = new List<USER>();
+
+            users = _userRepository.GetAll().ToList();
+			List<UserModel> userModels = users.Select(u => new UserModel
+			{
+				Id = u.Id,
+				UserName = u.UserName,
+				Email = u.Email
+			}).ToList();
+
+			return View(userModels);
+		}
 
         public IActionResult UpdateProduct(int id)
         {
