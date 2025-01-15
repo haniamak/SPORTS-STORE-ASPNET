@@ -5,7 +5,8 @@
         "Description": "Carbon sole shoes",
         "Price": 400,
         "Category": "Boots",
-        "ImageFileName": "runningshoes.jpg"
+        "ImageFileName": "runningshoes.jpg",
+        "IsDeleted": "false"
     },
     {
         "Id": 2,
@@ -13,7 +14,8 @@
         "Price": 29,
         "Description": "White color",
         "Category": "Sports equipment",
-        "ImageFileName": "footballball.jpg"
+        "ImageFileName": "footballball.jpg",
+        "IsDeleted": "false"
     },
     {
         "Id": 3,
@@ -21,7 +23,8 @@
         "Price": 19,
         "Description": "Waterproof",
         "Category": "Clothes",
-        "ImageFileName": "shorts.jpg"
+        "ImageFileName": "shorts.jpg",
+        "IsDeleted": "false"
     },
     {
         "Id": 4,
@@ -29,6 +32,7 @@
         "Description": "Anti-slip",
         "Price": 40,
         "Category": "Boots",
-        "ImageFileName": "flipflops.jpg"
+        "ImageFileName": "flipflops.jpg",
+        "IsDeleted": "false"
     }
 ]

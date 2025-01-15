@@ -25,7 +25,7 @@ namespace WebApplication2.Controllers
 		public IActionResult ListofProducts()
 		{
             List<Product> products = new List<Product>();
-            products = _context.Products.ToList();
+            products = _context.Products.Where(p => !p.IsDeleted).ToList();
             return View(products);
         }
 
@@ -51,11 +51,6 @@ namespace WebApplication2.Controllers
             return View(product);
         }
 
-        public IActionResult DeleteProduct()
-        {
-            //TODO: Implement this method
-            return View();
-        }
         [HttpPost]
         public IActionResult SaveUpdate(Product model)
         {
@@ -78,6 +73,28 @@ namespace WebApplication2.Controllers
             }
 
             return View("ListofProducts");
+        }
+
+        public IActionResult DeleteProduct(int id)
+        {
+            var product = _context.Products.Find(id);
+            return View(product);
+        }
+
+        [HttpPost]
+        public IActionResult SaveDelete(Product model)
+        {
+            var product = _context.Products.Find(model.ProductId);
+            if (product == null)
+            {
+                return NotFound();
+            }
+
+            product.IsDeleted = true;
+
+            _context.SaveChanges();
+
+            return RedirectToAction("ListofProducts");
         }
 
     }  

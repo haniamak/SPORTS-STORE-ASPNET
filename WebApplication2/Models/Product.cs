@@ -19,6 +19,6 @@ namespace WebApplication2.Models
 
         public string? ImageFileName { get; set; }
 
-
+        public bool IsDeleted { get; set; }
     }
 }

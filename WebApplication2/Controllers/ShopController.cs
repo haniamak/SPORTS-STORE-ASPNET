@@ -22,11 +22,11 @@ namespace WebApplication2.Controllers
             List<Product> products = new List<Product>();
             if(category.Equals("all"))
             {
-                products = _context.Products.ToList();
+                products = _context.Products.Where(p => !p.IsDeleted).ToList();
             }
             else
             {
-                products = _context.Products.Where(p => p.Category == category).ToList();
+                products = _context.Products.Where(p => !p.IsDeleted && p.Category == category).ToList();
             }
             return View(products);
         }
