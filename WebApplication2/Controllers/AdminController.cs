@@ -97,7 +97,37 @@ namespace WebApplication2.Controllers
             return RedirectToAction("ListofProducts");
         }
 
-    }  
-        
-        
+        public IActionResult CreateProduct()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public IActionResult SaveCreate(Product model)
+        {
+            var form = this.Request.Form;
+            if (form.Files[0] != null)
+            {
+                var file = form.Files[0];
+                var uploadsFolder = Path.Combine(Directory.GetCurrentDirectory(), "Data", "images");
+
+                var uniqueFileName = Guid.NewGuid().ToString() + "_" + Path.GetFileName(file.FileName);
+                var filePath = Path.Combine(uploadsFolder, uniqueFileName);
+                using (var stream = new FileStream(filePath, FileMode.Create))
+                {
+                    file.CopyTo(stream);
+                }
+
+                model.ImageFileName = uniqueFileName;
+            }
+
+
+            _context.Products.Add(model);
+            _context.SaveChanges();
+            return RedirectToAction("ListofProducts");
+        }
+
+    }
+
+
 }
