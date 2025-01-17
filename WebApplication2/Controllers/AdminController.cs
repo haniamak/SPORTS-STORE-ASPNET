@@ -111,14 +111,14 @@ namespace WebApplication2.Controllers
                 var file = form.Files[0];
                 var uploadsFolder = Path.Combine(Directory.GetCurrentDirectory(), "Data", "images");
 
-                var uniqueFileName = Guid.NewGuid().ToString() + "_" + Path.GetFileName(file.FileName);
-                var filePath = Path.Combine(uploadsFolder, uniqueFileName);
+                var imgFileName = Path.GetFileName(file.FileName);
+                var filePath = Path.Combine(uploadsFolder, imgFileName);
                 using (var stream = new FileStream(filePath, FileMode.Create))
                 {
                     file.CopyTo(stream);
                 }
 
-                model.ImageFileName = uniqueFileName;
+                model.ImageFileName = imgFileName;
             }
 
 
