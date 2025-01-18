@@ -29,8 +29,22 @@ namespace WebApplication2.Controllers
             return View(products);
         }
 
+        public IActionResult ListofOrders()
+        {
+            List<OrderModel> orders = new List<OrderModel>();
+			orders = _context.Orders.ToList();
+			return View(orders);
+        }
 
-        public IActionResult ListofUsers()
+		public IActionResult OrderDetails(int id)
+        {
+			var orderDetails = _context.OrderDetails.Where(od => od.ID_Order == id).ToList();
+
+			// Pass the data to the view
+			return View(orderDetails);
+		}
+
+		public IActionResult ListofUsers()
 		{
             List<USER> users = new List<USER>();
 

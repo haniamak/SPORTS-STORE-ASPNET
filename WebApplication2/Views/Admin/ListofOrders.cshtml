@@ -1,0 +1,31 @@
+﻿@model List<WebApplication2.Models.OrderModel>
+
+@{
+	Layout = "~/Views/Shared/_AdminLayout.cshtml";
+	ViewData["Title"] = "List of Orders";
+}
+
+<table class="table">
+	<thead>
+		<tr>
+			<th>Order ID</th>
+			<th>User ID</th>
+			<th>Date</th>
+			<th>Order Value</th>
+			<th></th>
+		</tr>
+	</thead>
+	<tbody>
+		@for (int i = 0; i < Model.Count; i++)
+		{
+			<tr>
+				<td>@Model[i].ID</td>
+				<td>@Model[i].ID_User</td>
+				<td>@Model[i].Date</td>
+				<td>@Model[i].ORDERVALUE</td>
+				<td><a asp-controller="Admin" asp-action="OrderDetails" asp-route-id="@Model[i].ID" class="btn btn-primary">Details</a></td>
+			</tr>
+		}
+
+	</tbody>
+</table>

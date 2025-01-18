@@ -2,14 +2,17 @@
     ViewBag.Title = "Weryfikacja 2FA";
 }
 <h2>Weryfikacja dwuskładnikowa</h2>
-<p><strong>@ViewBag.SecretKey</strong></p>
+
 <p>Wprowadź kod wygenerowany w aplikacji autentykującej:</p>
 <form method="post">
-    <label for="code">Kod:</label>
-    <input type="text" id="code" name="code" required>
-    <button type="submit">Zweryfikuj</button>
+    <div class="form-group">
+        <label for="code" class="form-label">Kod:</label>
+        <input type="text" id="code" name="code" class="form-group" required>
+    </div>
+    <button type="submit" class="btn btn-primary btn-sm w-auto">Zweryfikuj</button>
 </form>
+
 @if (!string.IsNullOrEmpty(ViewData["ErrorMessage"]?.ToString()))
 {
-    <p style="color: red;">@ViewData["ErrorMessage"]</p>
+    <p class="text-danger">@ViewData["ErrorMessage"]</p>
 }

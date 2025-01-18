@@ -1,0 +1,29 @@
+﻿@model List<WebApplication2.Models.OrderDetailsModel>
+
+@{
+	Layout = "~/Views/Shared/_AdminLayout.cshtml";
+	ViewData["Title"] = "Order Details";
+}
+
+<table class="table">
+	<thead>
+		<tr>
+			<th>ID_Product</th>
+			<th>QUANTITY</th>
+			<th>PRICE</th>
+			<th></th>
+			<th></th>
+		</tr>
+	</thead>
+	<tbody>
+		@for (int i = 0; i < Model.Count; i++)
+		{
+			<tr>
+				<td>@Model[i].ID_Product</td>
+				<td>@Model[i].QUANTITY</td>
+				<td>@(Model[i].PRICE * Model[i].QUANTITY)</td>
+			</tr>
+		}
+
+	</tbody>
+</table>
