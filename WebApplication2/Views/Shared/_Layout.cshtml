@@ -26,7 +26,7 @@
                     <li class="nav-item">
 						<a class="nav-link text-dark" asp-area="" asp-controller="Cart" asp-action="ViewCart">Cart</a>
                     </li>
-                    @if (User.Identity.Name == "Hanna Makowska") {
+                    @if (User.IsInRole("Admin")) {
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-controller="Admin" asp-action="ListofProducts">Admin</a>
                         </li>

@@ -9,6 +9,7 @@ using System.Security.Cryptography;
 using WebApplication2.Data;
 using WebApplication2.Models;
 using OtpNet;
+using System.Linq;
 
 
 namespace WebApplication2.Controllers
@@ -144,13 +145,10 @@ namespace WebApplication2.Controllers
                 if (otp.VerifyTotp(code, out long _))
                 {
                     TempData["UserId"] = null;
-
-                    
-                    var claims = new List<Claim>
-                {
-                new Claim(ClaimTypes.Name, user.UserName),
-                new Claim(ClaimTypes.Email, user.Email)
-                };
+                    var claims = new List<Claim> {
+                        new Claim(ClaimTypes.Name, user.UserName),
+                        new Claim(ClaimTypes.Email, user.Email)
+                    };
                     var identity = new ClaimsIdentity(claims, "Cookies");
                     var principal = new ClaimsPrincipal(identity);
 
@@ -247,13 +245,11 @@ namespace WebApplication2.Controllers
         public async Task<IActionResult> GoogleResponse(string returnUrl = null, string remoteError = null)
         {
             var result = await HttpContext.AuthenticateAsync(CookieAuthenticationDefaults.AuthenticationScheme);
-            var claims = result.Principal.Identities.FirstOrDefault().Claims.Select(claim => new
-            {
-                claim.Issuer,
-                claim.OriginalIssuer,
-                claim.Type,
-                claim.Value
-            });
+            var claims = new List<Claim>();
+            claims.AddRange(
+            result.Principal.Identities.FirstOrDefault().Claims);
+            claims.Add(new Claim(ClaimTypes.Role, "User"));
+
             return RedirectToAction("Success");
         }
 

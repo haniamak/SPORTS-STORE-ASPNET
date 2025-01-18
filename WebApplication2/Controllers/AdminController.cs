@@ -5,7 +5,7 @@ using WebApplication2.Models;
 
 namespace WebApplication2.Controllers
 {
-	
+    [Authorize("Admin")]
 	public class AdminController : Controller
 	{
         private readonly ShopContext _context;
