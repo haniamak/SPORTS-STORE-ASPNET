@@ -9,5 +9,6 @@
         T GetById(int id);
 		IEnumerable<string> GetRoles(int userId);
         void SaveSecretKey(int id, string userKey);
+        T GetUserByEmail(string email);
     }
 }

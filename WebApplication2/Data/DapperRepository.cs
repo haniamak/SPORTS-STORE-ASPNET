@@ -87,5 +87,11 @@ namespace WebApplication2.Data
             var sql = "UPDATE [dbo].[USER] SET SecretKey = @SecretKey WHERE Id = @UserId";
             _connection.Execute(sql, new { UserId = userId, SecretKey = secretKey });
         }
+
+        public T GetUserByEmail(string email)
+        {
+            var sql = "SELECT * FROM [dbo].[USER] WHERE Email = @Email";
+            return _connection.QuerySingleOrDefault<T>(sql, new { Email = email });
+        }
     }
 }

@@ -2,40 +2,44 @@
 
 <h1>Shopping Cart</h1>
 
-<table class="table">
-	<thead>
-		<tr>
-			<th>Product</th>
-			<th>Price</th>
-			<th>Quantity</th>
-			<th>Subtotal</th>
-			<th></th>
-			<th></th>
-		</tr>
-	</thead>
-	<tbody>
-		@foreach (var item in Model.CartItems)
-		{
-			<tr>
-				<td>@item.Product.Name</td>
-				<td>@item.Product.Price</td>
-				<td>@item.Quantity</td>
-				<td>@((item.Product.Price * item.Quantity).ToString("C"))</td>
-				<input type="hidden" value="@item.Product.ProductId"/>
-				<td>
-					<a asp-controller="Cart" asp-action="RemoveFromCart" asp-route-id="@item.Product.ProductId" class="btn btn-danger">Remove</a>
-				</td>
-				<td>
-					<a asp-controller="Cart" asp-action="AddExtra" asp-route-id="@item.Product.ProductId" class="btn btn-success">Add</a>
-				</td>
-			</tr>
-		}
-		<tr>
-			<td></td>
-			<td></td>
-			<td><strong>Total:</strong></td>
-			<td><strong>@Model.TotalPrice.ToString("C")</strong></td>
+<form asp-controller="Cart" asp-action="SaveOrder" method="post">
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Product</th>
+                <th>Price</th>
+                <th>Quantity</th>
+                <th>Subtotal</th>
+                <th></th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model.CartItems)
+            {
+                <tr>
+                    <td>@item.Product.Name</td>
+                    <td>@item.Product.Price</td>
+                    <td>@item.Quantity</td>
+                    <td>@((item.Product.Price * item.Quantity).ToString("C"))</td>
+                    <input type="hidden" name="CartItems[@Model.CartItems.IndexOf(item)].ProductId" value="@item.Product.ProductId" />
+                    <input type="hidden" name="CartItems[@Model.CartItems.IndexOf(item)].Quantity" value="@item.Quantity" />
+                    <td>
+                        <a asp-controller="Cart" asp-action="RemoveFromCart" asp-route-id="@item.Product.ProductId" class="btn btn-danger">Remove</a>
+                    </td>
+                    <td>
+                        <a asp-controller="Cart" asp-action="AddExtra" asp-route-id="@item.Product.ProductId" class="btn btn-success">Add</a>
+                    </td>
+                </tr>
+            }
+            <tr>
+                <td></td>
+                <td></td>
+                <td><strong>Total:</strong></td>
+                <td><strong>@Model.TotalPrice.ToString("C")</strong></td>
+            </tr>
+        </tbody>
+    </table>
 
-		</tr>
-	</tbody>
-</table>
+    <button type="submit" class="btn btn-primary">Order</button>
+</form>

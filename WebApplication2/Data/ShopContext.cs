@@ -12,6 +12,9 @@ namespace WebApplication2.Data
 
         public DbSet<Product> Products { get; set; }
 
+        public DbSet<OrderModel> Orders { get; set; }
+        public DbSet<OrderDetailsModel> OrderDetails { get; set; }
+
         public void SeedData()
         {
             
